@@ -1,0 +1,106 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<conio.h>
+#define MAX 20
+typedef struct
+{
+       int top;
+       int element[MAX];
+}stack;
+typedef enum{false,true}boolean;
+void createStack(stack *ps);
+boolean isEmpty(stack *ps);
+boolean isFull(stack *ps);
+void push(stack *ps,int value);
+	 int pop(stack *ps);
+	 int peek(stack *ps);
+void main()
+	  {
+	  int choice,element;
+	  stack s;
+createStack(&s);
+do
+	   {
+	    printf("options avilable\n");
+	    printf("++++++++++++\n\n");
+	    printf("1.Push\n");
+	    printf("2.Pop\n");
+	    printf("3.Peek\n");
+	    printf("4.Exit\n");
+	    printf("Enter your choice(1-4):");
+	    scanf("%d",&choice);
+switch(choice)
+	    {
+	    case 1:if( isFull(&s))
+	    {
+	    printf("Stack full,press any key to continue");
+getch();
+	     }
+	     else
+	     {
+	     printf("Enter value:");
+	     scanf("%d",&element);
+	     push(&s,element);
+	     }
+	     break;
+	     case 2:if( isEmpty(&s))
+	     {
+	     printf("Stack empty,press any key to continue");
+	     getch();
+	     }
+	     else
+	     {
+	     printf("value poped is %d\n",pop(&s));
+	     printf("press any key to continue...");
+	     getch();
+	     }
+	     break;
+	     case 3:if( isEmpty(&s))
+	     {
+	     printf("stack empty,press any key to continue");
+	     getch();
+	     }
+	     else
+	     {
+	     printf("value at top is %d\n",peek(&s));
+	     printf("Press any key to continue.....");
+	     getch();
+	     }
+	     }
+ }
+ while(choice!=4);
+ }
+ void createStack(stack *ps)
+	     {
+	     ps->top=-1;
+	     }
+boolean isEmpty(stack *ps)
+	     {
+	     if(ps->top==-1)
+	     return true;
+	     else
+	     return false;
+	     }
+boolean isfull(stack *ps)
+	     {
+	     if(ps->top==MAX-1)
+	     return true;
+	     else
+	     return false;
+	     }
+void push(stack *ps,int value)
+	     {
+	     ps->top++;
+	     ps->element[ps->top]=value;
+	     }
+int pop(stack *ps)
+	     {
+	     int temp;
+	     temp=ps->element[ps->top];
+	     ps->top--;
+	     return temp;
+	     }
+int peek(stack *ps)
+	     {
+	     return(ps->element[ps->top]);
+	     }
